@@ -19,13 +19,14 @@ $(document).ready(function() {
   // Collect Tweets
   // Get Request using twitter API
   var getTweets = function(){
-    // // Once I get approved
     // $.ajax({
     //   url: url,
     //   type: 'GET',
-    //   headers: {
-    //     'header1': 'value1',
-    //     'header2': 'value2'
+    //   "headers": {
+    //      "Host": "api.twitter.com",
+    //      "User-Agent": "Mos",
+    //      "Authorization": "Bearer ...",
+    //      "Cache-Control": "no-cache",
     //   },
     //   success: function(data){ 
     //       showTweets(data)
@@ -34,7 +35,7 @@ $(document).ready(function() {
     //       console.log(error)
     //   }
     // });
-    return showTweets(mockRes)   
+    showTweets(mockRes)   
   }
   
   // to test that new tweets are being added
