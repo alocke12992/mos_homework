@@ -20,7 +20,7 @@ $(document).ready(function() {
   var getTweetsOnLoad = function() {
     return getTweets()
   }
-  
+
   var getTweets = function(){
     $.ajax({
       url: `${path}/tweets`,
@@ -43,7 +43,7 @@ $(document).ready(function() {
       $('.tweets > li').remove()
     }
     tweets.statuses.forEach(tweet => {
-      $('.tweets').append('<li>'+ timesCalled + ': ' + tweet.text + '</li>')
+      $('.tweets').append('<li>' + tweet.text + '</li>')
     });
   }
 
