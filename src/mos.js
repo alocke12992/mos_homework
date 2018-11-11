@@ -23,40 +23,29 @@ $(document).ready(function() {
 
   var getTweets = function() {
     $.ajax({
-      url: `${path}/tweets/nycc2016`,
+      url: `${path}/tweets`,
       type: 'GET',
       success: function(data){ 
-        showTweets(data, 'nycc2016')
+        showTweets(data, 'new')
       },
       error: function(error) {
         console.log(error)
       }
     });
-
-    $.ajax({
-      url: `${path}/tweets/newyorkcomiccon`,
-      type: 'GET',
-      success: function(data){ 
-        showTweets(data, 'newyorkcomiccon')
-      },
-      error: function(error) {
-          console.log(error)
-      }
-    })
   }
 
   // update Tweets periodically    
   var showTweets = function(tweets, query) { 
-    if (!$(`.${query}`).length){
-      $('p:contains("NYCC is coming!")').after(`<ul class="${query}"><strong>Latest #${query} Tweets</strong><br /><br /><br /></ul>`)
+    if (!$('.newyorkcomiccon').length){
+      $('p:contains("NYCC is coming!")').after('<ul class="newyorkcomiccon"><strong>Latest #nycc2016 & #newyorkcomiccon Tweets</strong><br /><br /><br /></ul>')
     } else {
-      $(`.${query} > li`).remove()
+      $('.newyorkcomiccon > li').remove()
     }
     tweets.statuses.forEach(tweet => {
-      $(`.${query}`).append('<li>' + tweet.text + '</li>')
+      $('.newyorkcomiccon').append('<li>' + tweet.text + '</li>')
     });
   }
 
   getTweetsOnLoad()
-  setInterval(getTweets, 50000)
+  setInterval(getTweets, 60000)
 }); // Ending document.ready();

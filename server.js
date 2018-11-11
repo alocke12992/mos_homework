@@ -8,9 +8,7 @@ const port = process.env.PORT || 3000;
 app.use(express.static(path.join(__dirname, 'src')))
 
 const getTweets = function(req, res) {
-  let query = req.params.hashtag
-
-  axios.get(`https://api.twitter.com/1.1/search/tweets.json?q=${query}&src=typd`, { headers: { Authorization: process.env.BEARER_TOKEN }})
+  axios.get(`https://api.twitter.com/1.1/search/tweets.json?q=%23newyorkcomiccon%20OR%20%23nycc2016&result_type=recent&src=typd`, { headers: { Authorization: process.env.BEARER_TOKEN }})
     .then(response => {
       res.send(response.data)
     })
@@ -19,7 +17,7 @@ const getTweets = function(req, res) {
     })
 }
 // get Tweets
-app.get('/tweets/:hashtag', getTweets)
+app.get('/tweets', getTweets)
 app.get('/robots.txt', function (req, res) {
   res.type('text/plain');
   res.send("User-agent: *\nDisallow: /");
