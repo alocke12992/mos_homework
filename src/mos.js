@@ -21,29 +21,39 @@ $(document).ready(function() {
     return getTweets()
   }
 
-  var getTweets = function(){
+  var getTweets = function() {
     $.ajax({
-      url: `${path}/tweets`,
+      url: `${path}/tweets/nycc2016`,
       type: 'GET',
       success: function(data){ 
-        console.log(data)
-        showTweets(data)
+        showTweets(data, 'nycc2016')
+      },
+      error: function(error) {
+        console.log(error)
+      }
+    });
+
+    $.ajax({
+      url: `${path}/tweets/newyorkcomiccon`,
+      type: 'GET',
+      success: function(data){ 
+        showTweets(data, 'newyorkcomiccon')
       },
       error: function(error) {
           console.log(error)
       }
-    });
+    })
   }
 
   // update Tweets periodically    
-  var showTweets = function(tweets){
-    if (!$('.twurlData').length){
-      $('p:contains("NYCC is coming!")').after('<ul class="twurlData"></ul>')
+  var showTweets = function(tweets, query) { 
+    if (!$(`.${query}`).length){
+      $('p:contains("NYCC is coming!")').after(`<ul class="${query}"><strong>Latest #${query} Tweets</strong><br /><br /><br /></ul>`)
     } else {
-      $('.twurlData > li').remove()
+      $(`.${query} > li`).remove()
     }
     tweets.statuses.forEach(tweet => {
-      $('.twurlData').append('<li>' + tweet.text + '</li>')
+      $(`.${query}`).append('<li>' + tweet.text + '</li>')
     });
   }
 
