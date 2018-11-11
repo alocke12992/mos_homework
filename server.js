@@ -1,8 +1,10 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
+const path = require('path');
+const port = process.env.PORT || 3000;
 
-app.get('/', function(req, res){
-  res.send('hello world');
-});
+app.use(express.static(path.join(__dirname, 'src')))
 
-app.listen(3000)
+app.listen(port, () => {
+  console.log(`http://localhost:${port}`)
+})
