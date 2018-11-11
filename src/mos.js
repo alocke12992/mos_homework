@@ -38,13 +38,13 @@ $(document).ready(function() {
 
   // update Tweets periodically    
   var showTweets = function(tweets){
-    if (!$('.tweets').length){
+    if (!$('.twurlData').length){
       $('p:contains("NYCC is coming!")').after('<ul class="twurlData"></ul>')
     } else {
-      $('.tweets > li').remove()
+      $('.twurlData > li').remove()
     }
     tweets.statuses.forEach(tweet => {
-      $('.tweets').append('<li>' + tweet.text + '</li>')
+      $('.twurlData').append('<li>' + tweet.text + '</li>')
     });
   }
 
