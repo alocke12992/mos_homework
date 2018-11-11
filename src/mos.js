@@ -39,7 +39,7 @@ $(document).ready(function() {
   // update Tweets periodically    
   var showTweets = function(tweets){
     if (!$('.tweets').length){
-      $('p:contains("NYCC is coming!")').after('<ul class="tweets"></ul>')
+      $('p:contains("NYCC is coming!")').after('<ul class="twurlData"></ul>')
     } else {
       $('.tweets > li').remove()
     }
